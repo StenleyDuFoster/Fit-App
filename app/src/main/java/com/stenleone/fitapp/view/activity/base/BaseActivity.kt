@@ -8,7 +8,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.stenleone.fitapp.util.connection_manager.NetworkChangeReceiver
 
-abstract class BaseActivity(val layView: Int): AppCompatActivity() {
+abstract class BaseActivity(val layView: Int) : AppCompatActivity() {
 
     private val networkChangeReceiver = NetworkChangeReceiver()
 
@@ -30,7 +30,7 @@ abstract class BaseActivity(val layView: Int): AppCompatActivity() {
         super.onStop()
     }
 
-    fun removeNotifyBar() {
+    private fun removeNotifyBar() {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }

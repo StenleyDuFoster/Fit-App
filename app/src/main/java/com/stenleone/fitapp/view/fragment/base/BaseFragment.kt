@@ -5,14 +5,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import com.stenleone.fitapp.model.view_model.base.BaseViewModel
 
 abstract class BaseFragment(val layView: Int) : Fragment() {
+
+    protected lateinit var navController: NavController
+    protected lateinit var viewModel: BaseViewModel
+
+    abstract fun initViewModel()
+    abstract fun initUserParams()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return inflater.inflate(layView, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        navController = Navigation.findNavController(view)
+        initViewModel()
+        initUserParams()
+        super.onViewCreated(view, savedInstanceState)
     }
 }

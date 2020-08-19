@@ -1,26 +1,20 @@
 package com.stenleone.fitapp.model.view_model
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.stenleone.fitapp.model.data.ItemDetailsFitApp
-import com.stenleone.fitapp.model.internet.JsonPlaceHolderFitPlan
+import com.stenleone.fitapp.model.view_model.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
-import org.koin.standalone.KoinComponent
-import org.koin.standalone.inject
 
-class DatailsViewModel : ViewModel(), KoinComponent {
+class DatailsViewModel : BaseViewModel() {
 
-    val liveItem = MutableLiveData<ItemDetailsFitApp>()
-    val liveError = MutableLiveData<Throwable>()
+    private val liveItem = MutableLiveData<ItemDetailsFitApp>()
 
     fun getItem() = liveItem
-    fun getError() = liveError
 
     fun getItemDetails(itemId: Int, authToken: String) {
 
-        val jsonPlaceHolderFitPlan: JsonPlaceHolderFitPlan by inject()
         jsonPlaceHolderFitPlan.getItem(
             itemId,
             authToken
@@ -29,12 +23,14 @@ class DatailsViewModel : ViewModel(), KoinComponent {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 {error ->
-                    liveError.postValue(error)
+                    liveError.postValue(error.message)
                 },
                 {
                     response ->
                     if(response.isSuccessful) {
                         liveItem.postValue(response.body())
+                    } else {
+                        liveError.postValue(response.code().toString())
                     }
                 })
     }

@@ -1,26 +1,21 @@
 package com.stenleone.fitapp.model.view_model
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.stenleone.fitapp.model.data.LogInUserFitPlan
-import com.stenleone.fitapp.model.internet.JsonPlaceHolderFitPlan
+import com.stenleone.fitapp.model.view_model.base.BaseViewModel
+import com.stenleone.fitapp.util.easyToast.makeToast
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.rxkotlin.subscribeBy
-import org.koin.standalone.KoinComponent
-import org.koin.standalone.inject
 
-class LoginViewModel : ViewModel(), KoinComponent{
+class LoginViewModel : BaseViewModel() {
 
-    val liveUser = MutableLiveData<LogInUserFitPlan>()
-    val liveError = MutableLiveData<Throwable>()
+    private val liveUser = MutableLiveData<LogInUserFitPlan>()
 
     fun getUser() = liveUser
-    fun getError() = liveError
 
     fun logInFitPlan(userName: String, userPassword: String) {
 
-        val jsonPlaceHolderFitPlan: JsonPlaceHolderFitPlan by inject()
         jsonPlaceHolderFitPlan.postAuth(
             userName,
             userPassword
@@ -29,12 +24,15 @@ class LoginViewModel : ViewModel(), KoinComponent{
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 {error ->
-                    liveError.postValue(error)
+                    liveError.postValue(error.message)
+                    makeToast(error.toString())
                 },
                 {
                     response ->
                     if(response.isSuccessful) {
                         liveUser.postValue(response.body())
+                    } else {
+                        liveError.postValue(response.code().toString())
                     }
                 })
     }

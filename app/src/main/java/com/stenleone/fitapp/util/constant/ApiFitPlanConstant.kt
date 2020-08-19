@@ -11,7 +11,7 @@ class ApiFitPlanConstant {
         const val CONTENT_LIST = "v2/plans?locale=en"
         const val ITEM_DETAILS = "v2/plan/details"
 
-        const val userName = "test@fitplanapp.com"
-        const val password = "fitplan123"
+        const val USER_LOGIN = "test@fitplanapp.com"
+        const val USER_PASSWORD = "fitplan123"
     }
 }
