@@ -14,6 +14,8 @@ import com.stenleone.fitapp.view.recycler.RecyclerAdapter
 import com.stenleone.fitapp.view.recycler.callback.CallBackFromRecyclerToFragment
 import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.fragment_main.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainFragment : BaseFragment(R.layout.fragment_main), CallBackFromRecyclerToFragment {
@@ -49,13 +51,12 @@ class MainFragment : BaseFragment(R.layout.fragment_main), CallBackFromRecyclerT
     override fun itemClick(position: Int) {
 
         val bundle = Bundle()
-        val arrayStringItem = ArrayList<String>()
-
-        arrayStringItem.add(itemsList[position].id.toString())
-        arrayStringItem.add(itemsList[position].athleteFirstName)
-        arrayStringItem.add(itemsList[position].athleteLastName)
-        arrayStringItem.add(itemsList[position].name)
-        arrayStringItem.add(itemsList[position].imageSmallUrl)
+        val arrayStringItem: ArrayList<String> = ArrayList(Arrays.asList(
+            itemsList[position].id.toString(),
+            itemsList[position].athleteFirstName,
+            itemsList[position].athleteLastName,
+            itemsList[position].name,
+            itemsList[position].imageSmallUrl))
 
         bundle.putStringArrayList("item", arrayStringItem)
         navController.navigate(R.id.action_mainFragment_to_detailsFragment, bundle)

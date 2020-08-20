@@ -1,8 +1,5 @@
 package com.stenleone.fitapp.view.fragment
 
-import android.content.Intent
-import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 

@@ -1,23 +1,19 @@
 package com.stenleone.fitapp.view.fragment
 
-import android.os.Handler
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.stenleone.fitapp.R
 import com.stenleone.fitapp.model.view_model.DetailsViewModel
-import com.stenleone.fitapp.model.view_model.ListViewModel
 import com.stenleone.fitapp.util.easyToast.makeToast
 import com.stenleone.fitapp.view.fragment.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_details.*
 
 class DetailsFragment : BaseFragment(R.layout.fragment_details) {
 
-
     override fun initAfterViewCreated() {
 
         activity!!.actionBar!!.setDisplayHomeAsUpEnabled(true)
-
         val saveContent = arguments!!.getStringArrayList("item")
 
         text_1.setText(saveContent?.get(1) + " " + saveContent?.get(2))

@@ -34,7 +34,7 @@ class RecyclerAdapter(arrayItems: ArrayList<ItemFitApp>, listener: CallBackFromR
                 if (listener != null) {
                     val position = adapterPosition
                     if (position != RecyclerView.NO_POSITION) {
-                       listener.itemClick(position)
+                        listener.itemClick(position)
                     }
                 }
             }

@@ -7,6 +7,7 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.stenleone.fitapp.util.connection_manager.NetworkChangeReceiver
+import kotlinx.android.synthetic.main.app_bar.*
 
 abstract class BaseActivity(val layView: Int) : AppCompatActivity() {
 
@@ -21,6 +22,13 @@ abstract class BaseActivity(val layView: Int) : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         removeNotifyBar()
         setContentView(layView)
+
+        if(toolBar != null) {
+            setActionBar(toolBar)
+            toolBar.setNavigationOnClickListener {
+                onBackPressed()
+            }
+        }
     }
 
     override fun onStart() {
