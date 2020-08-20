@@ -12,6 +12,11 @@ abstract class BaseActivity(val layView: Int) : AppCompatActivity() {
 
     private val networkChangeReceiver = NetworkChangeReceiver()
 
+    private fun removeNotifyBar() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         removeNotifyBar()
@@ -28,10 +33,5 @@ abstract class BaseActivity(val layView: Int) : AppCompatActivity() {
     override fun onStop() {
         unregisterReceiver(networkChangeReceiver)
         super.onStop()
-    }
-
-    private fun removeNotifyBar() {
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 }

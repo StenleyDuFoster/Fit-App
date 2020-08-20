@@ -20,6 +20,7 @@
         app:navGraph="@navigation/login_navigation"/>
 
     <LinearLayout
+        android:alpha="0"
         android:id="@+id/loadLay"
         android:layout_margin="20dp"
         android:layout_width="wrap_content"

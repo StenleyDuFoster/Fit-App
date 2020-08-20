@@ -30,7 +30,7 @@ class DatailsViewModel : BaseViewModel() {
                     if(response.isSuccessful) {
                         liveItem.postValue(response.body())
                     } else {
-                        liveError.postValue(response.code().toString())
+                        liveError.postValue("error code: " + response.code().toString())
                     }
                 })
     }

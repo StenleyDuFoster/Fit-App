@@ -32,7 +32,7 @@ class LoginViewModel : BaseViewModel() {
                     if(response.isSuccessful) {
                         liveUser.postValue(response.body())
                     } else {
-                        liveError.postValue(response.code().toString())
+                        liveError.postValue("error code: " + response.code().toString())
                     }
                 })
     }

@@ -2,7 +2,7 @@ package com.stenleone.fitapp.util.easyToast
 
 import android.content.Context
 import android.widget.Toast
-import com.stenleone.fitapp.App
+import com.stenleone.fitapp.koin.application.App
 
 val context = App.contextComponent
 

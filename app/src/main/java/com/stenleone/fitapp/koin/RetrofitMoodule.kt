@@ -1,6 +1,6 @@
 package com.stenleone.fitapp.koin
 
-import com.stenleone.fitapp.model.internet.JsonPlaceHolderFitPlan
+import com.stenleone.fitapp.model.network.JsonPlaceHolderFitPlan
 import com.stenleone.fitapp.util.constant.ApiFitPlanConstant
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient

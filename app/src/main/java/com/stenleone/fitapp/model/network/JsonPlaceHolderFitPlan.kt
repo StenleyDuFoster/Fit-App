@@ -1,4 +1,4 @@
-package com.stenleone.fitapp.model.internet
+package com.stenleone.fitapp.model.network
 
 import com.stenleone.fitapp.model.data.ItemDetailsFitApp
 import com.stenleone.fitapp.model.data.ItemListFitPlan

@@ -2,7 +2,7 @@ package com.stenleone.fitapp.model.view_model.base
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.stenleone.fitapp.model.internet.JsonPlaceHolderFitPlan
+import com.stenleone.fitapp.model.network.JsonPlaceHolderFitPlan
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
 

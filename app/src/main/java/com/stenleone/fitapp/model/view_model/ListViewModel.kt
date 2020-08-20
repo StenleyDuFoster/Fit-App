@@ -1,6 +1,7 @@
 package com.stenleone.fitapp.model.view_model
 
 import androidx.lifecycle.MutableLiveData
+import com.stenleone.fitapp.model.data.ItemFitApp
 import com.stenleone.fitapp.model.data.ItemListFitPlan
 import com.stenleone.fitapp.model.view_model.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -9,7 +10,7 @@ import io.reactivex.schedulers.Schedulers
 
 class ListViewModel : BaseViewModel() {
 
-    private val liveListItem = MutableLiveData<ItemListFitPlan>()
+    private val liveListItem = MutableLiveData<List<ItemFitApp>>()
 
     fun getList() = liveListItem
 
@@ -27,9 +28,9 @@ class ListViewModel : BaseViewModel() {
                 {
                     response ->
                     if(response.isSuccessful) {
-                        liveListItem.postValue(response.body())
+                        liveListItem.postValue(response.body()?.result)
                     } else {
-                        liveError.postValue(response.code().toString())
+                        liveError.postValue("error code: " + response.code().toString())
                     }
                 })
     }

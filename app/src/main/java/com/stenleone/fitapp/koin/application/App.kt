@@ -1,4 +1,4 @@
-package com.stenleone.fitapp
+package com.stenleone.fitapp.koin.application
 
 import android.app.Application
 import android.content.Context
@@ -7,9 +7,9 @@ import org.koin.android.ext.android.startKoin
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
 
-class App: Application() {
+class App : Application() {
 
-    companion object: KoinComponent{
+    companion object: KoinComponent {
         val contextComponent: Context by inject()
     }
 
