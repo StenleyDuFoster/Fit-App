@@ -21,7 +21,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         textInputEmailEditText.setText(ApiFitPlanConstant.USER_LOGIN)
         textInputPasswordEditText.setText(ApiFitPlanConstant.USER_PASSWORD)
 
-        loginButton.setOnClickListener { v ->
+        loginButton.setOnClickListener {
 
             (viewModel as LoginViewModel).logInFitPlan(
                 textInputEmailEditText.text.toString(),

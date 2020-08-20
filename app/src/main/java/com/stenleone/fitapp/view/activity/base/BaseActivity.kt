@@ -9,13 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.stenleone.fitapp.util.connection_manager.NetworkChangeReceiver
 import kotlinx.android.synthetic.main.app_bar.*
 
-abstract class BaseActivity(val layView: Int) : AppCompatActivity() {
+abstract class BaseActivity(private val layView: Int) : AppCompatActivity() {
 
     private val networkChangeReceiver = NetworkChangeReceiver()
 
     private fun removeNotifyBar() {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

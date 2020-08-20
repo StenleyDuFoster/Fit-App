@@ -3,7 +3,6 @@ package com.stenleone.fitapp.view.fragment
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.stenleone.fitapp.R
 import com.stenleone.fitapp.model.data.ItemFitApp
@@ -12,10 +11,7 @@ import com.stenleone.fitapp.util.easyToast.makeToast
 import com.stenleone.fitapp.view.fragment.base.BaseFragment
 import com.stenleone.fitapp.view.recycler.RecyclerAdapter
 import com.stenleone.fitapp.view.recycler.callback.CallBackFromRecyclerToFragment
-import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.fragment_main.*
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class MainFragment : BaseFragment(R.layout.fragment_main), CallBackFromRecyclerToFragment {
@@ -51,12 +47,14 @@ class MainFragment : BaseFragment(R.layout.fragment_main), CallBackFromRecyclerT
     override fun itemClick(position: Int) {
 
         val bundle = Bundle()
-        val arrayStringItem: ArrayList<String> = ArrayList(Arrays.asList(
+        val arrayStringItem: ArrayList<String> = ArrayList(
+            listOf(
             itemsList[position].id.toString(),
             itemsList[position].athleteFirstName,
             itemsList[position].athleteLastName,
             itemsList[position].name,
-            itemsList[position].imageSmallUrl))
+            itemsList[position].imageSmallUrl)
+        )
 
         bundle.putStringArrayList("item", arrayStringItem)
         navController.navigate(R.id.action_mainFragment_to_detailsFragment, bundle)

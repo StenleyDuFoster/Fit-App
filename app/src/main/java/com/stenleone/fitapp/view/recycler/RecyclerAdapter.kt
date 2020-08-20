@@ -12,10 +12,9 @@ import com.stenleone.fitapp.koin.application.App
 import com.stenleone.fitapp.model.data.ItemFitApp
 import com.stenleone.fitapp.view.recycler.callback.CallBackFromRecyclerToFragment
 
-class RecyclerAdapter(arrayItems: ArrayList<ItemFitApp>, listener: CallBackFromRecyclerToFragment?) :
+class RecyclerAdapter(private val arrayItems: ArrayList<ItemFitApp>, listener: CallBackFromRecyclerToFragment?) :
     RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
-    private val arrayItems: ArrayList<ItemFitApp> = arrayItems
     private var callBackFromRecyclerToFragment: CallBackFromRecyclerToFragment? = listener
 
     private lateinit var background: ImageView
@@ -57,8 +56,8 @@ class RecyclerAdapter(arrayItems: ArrayList<ItemFitApp>, listener: CallBackFromR
     ) {
         val currentItem: ItemFitApp = arrayItems[position]
 
-        firstText.setText(currentItem.athleteFirstName + " " + currentItem.athleteLastName)
-        secondText.setText(currentItem.name)
+        firstText.text = (currentItem.athleteFirstName + " " + currentItem.athleteLastName)
+        secondText.text = currentItem.name
 
         Glide
             .with(App.contextComponent)

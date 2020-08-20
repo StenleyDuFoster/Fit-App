@@ -8,10 +8,10 @@ import com.stenleone.fitapp.util.easyToast.makeToast
 
 class NetworkChangeReceiver: BroadcastReceiver() {
 
-    var doAfterConnectionWillResume:Runnable? = null
+    private var doAfterConnectionWillResume:Runnable? = null
 
-    var oldNetworkState = true
-    var newNetworkState = true
+    private var oldNetworkState = true
+    private var newNetworkState = true
 
     override fun onReceive(context: Context?, intent: Intent) {
 
