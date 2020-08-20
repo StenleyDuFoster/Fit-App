@@ -14,11 +14,9 @@ class ListViewModel : BaseViewModel() {
 
     fun getList() = liveListItem
 
-    fun getListFitPlan(authToken: String) {
+    fun getListFitPlan() {
 
-        jsonPlaceHolderFitPlan.getListItem(
-            authToken
-        )
+        jsonPlaceHolderFitPlan.getListItem()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(

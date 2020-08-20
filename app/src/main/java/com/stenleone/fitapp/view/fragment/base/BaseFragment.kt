@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import com.stenleone.fitapp.model.view_model.base.BaseViewModel
+import kotlinx.android.synthetic.main.app_bar.*
 
 abstract class BaseFragment(val layView: Int) : Fragment() {
 

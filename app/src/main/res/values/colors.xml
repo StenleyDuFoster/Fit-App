@@ -6,4 +6,5 @@
     <color name="borderColor">#FFFFFF</color>
 
     <color name="colorBackground">#4F3777</color>
+    <color name="colorBackgroundDark">#382755</color>
 </resources>

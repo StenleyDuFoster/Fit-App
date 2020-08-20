@@ -1,23 +1,22 @@
-package com.stenleone.fitapp.koin
+package com.stenleone.fitapp.koin.module
 
+import com.stenleone.fitapp.koin.interceptor.BasicHeaderInterceptor
 import com.stenleone.fitapp.model.network.JsonPlaceHolderFitPlan
 import com.stenleone.fitapp.util.constant.ApiFitPlanConstant
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 val retrofitFitPlanModule = module {
-    single { provideRetrofitFitPlan() }
+    factory { provideRetrofitFitPlan() }
 }
 
 fun provideRetrofitFitPlan(): JsonPlaceHolderFitPlan {
 
-    var interceptor = HttpLoggingInterceptor()
-    interceptor.level = HttpLoggingInterceptor.Level.BODY
+    var interceptor =  BasicHeaderInterceptor()
 
     val client = OkHttpClient.Builder()
         .addInterceptor(interceptor)

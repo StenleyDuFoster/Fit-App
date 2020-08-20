@@ -1,18 +1,33 @@
 package com.stenleone.fitapp.view.fragment
 
+import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.stenleone.fitapp.R
+import com.stenleone.fitapp.model.data.ItemFitApp
 import com.stenleone.fitapp.model.view_model.ListViewModel
 import com.stenleone.fitapp.util.easyToast.makeToast
 import com.stenleone.fitapp.view.fragment.base.BaseFragment
+import com.stenleone.fitapp.view.recycler.RecyclerAdapter
+import com.stenleone.fitapp.view.recycler.callback.CallBackFromRecyclerToFragment
+import kotlinx.android.synthetic.main.app_bar.*
+import kotlinx.android.synthetic.main.fragment_main.*
 
-class MainFragment : BaseFragment(R.layout.fragment_main) {
+
+class MainFragment : BaseFragment(R.layout.fragment_main), CallBackFromRecyclerToFragment {
+
+    private var itemsList = ArrayList<ItemFitApp>()
 
     override fun initAfterViewCreated() {
 
-        (viewModel as ListViewModel).getListFitPlan("")
+        if(itemsList.size < 1) {
+            (viewModel as ListViewModel).getListFitPlan()
+        }
+
+        recycler.layoutManager = LinearLayoutManager(context)
+        activity!!.actionBar!!.setDisplayHomeAsUpEnabled(false)
     }
 
     override fun initViewModel() {
@@ -21,12 +36,28 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
 
         (viewModel as ListViewModel).getList().observe(viewLifecycleOwner, Observer { list ->
 
-            makeToast(list.size.toString())
+            itemsList = ArrayList(list)
+            recycler.adapter = RecyclerAdapter(itemsList, this as CallBackFromRecyclerToFragment)
         })
 
         viewModel.getError().observe(viewLifecycleOwner, Observer { throwable ->
 
             makeToast(throwable.toString())
         })
+    }
+
+    override fun itemClick(position: Int) {
+
+        val bundle = Bundle()
+        val arrayStringItem = ArrayList<String>()
+
+        arrayStringItem.add(itemsList[position].id.toString())
+        arrayStringItem.add(itemsList[position].athleteFirstName)
+        arrayStringItem.add(itemsList[position].athleteLastName)
+        arrayStringItem.add(itemsList[position].name)
+        arrayStringItem.add(itemsList[position].imageSmallUrl)
+
+        bundle.putStringArrayList("item", arrayStringItem)
+        navController.navigate(R.id.action_mainFragment_to_detailsFragment, bundle)
     }
 }

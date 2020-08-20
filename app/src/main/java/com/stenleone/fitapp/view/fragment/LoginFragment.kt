@@ -1,11 +1,14 @@
 package com.stenleone.fitapp.view.fragment
 
 import android.content.Intent
+import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
 import com.stenleone.fitapp.R
 import com.stenleone.fitapp.model.view_model.LoginViewModel
+import com.stenleone.fitapp.util.Token
 import com.stenleone.fitapp.util.anim.CustomAnimate
 import com.stenleone.fitapp.util.constant.ApiFitPlanConstant
 import com.stenleone.fitapp.util.easyToast.makeToast
@@ -37,6 +40,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
         (viewModel as LoginViewModel).getUser().observe(viewLifecycleOwner, Observer { user ->
 
+            Token.token = user.accessToken
             navController.navigate(R.id.action_loginFragment_to_mainActivity)
             activity?.finish()
         })

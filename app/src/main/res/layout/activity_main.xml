@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,6 +8,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.activity.MainActivity"
     android:background="@color/colorBackground">
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/app_bar" />
 
     <fragment
         android:id="@+id/fragmentContainer"
@@ -20,4 +26,4 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/main_navigation"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

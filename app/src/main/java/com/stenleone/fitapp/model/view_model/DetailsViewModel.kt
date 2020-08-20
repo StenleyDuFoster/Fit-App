@@ -1,23 +1,22 @@
 package com.stenleone.fitapp.model.view_model
 
 import androidx.lifecycle.MutableLiveData
-import com.stenleone.fitapp.model.data.ItemDetailsFitApp
+import com.stenleone.fitapp.model.data.details.ItemDetailsFitApp
 import com.stenleone.fitapp.model.view_model.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
-class DatailsViewModel : BaseViewModel() {
+class DetailsViewModel : BaseViewModel() {
 
     private val liveItem = MutableLiveData<ItemDetailsFitApp>()
 
     fun getItem() = liveItem
 
-    fun getItemDetails(itemId: Int, authToken: String) {
+    fun getItemDetails(itemId: Int) {
 
         jsonPlaceHolderFitPlan.getItem(
-            itemId,
-            authToken
+            itemId
         )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

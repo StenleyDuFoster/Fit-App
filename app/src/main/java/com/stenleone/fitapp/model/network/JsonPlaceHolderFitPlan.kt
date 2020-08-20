@@ -1,6 +1,6 @@
 package com.stenleone.fitapp.model.network
 
-import com.stenleone.fitapp.model.data.ItemDetailsFitApp
+import com.stenleone.fitapp.model.data.details.ItemDetailsFitApp
 import com.stenleone.fitapp.model.data.ItemListFitPlan
 import com.stenleone.fitapp.model.data.LogInUserFitPlan
 import com.stenleone.fitapp.util.constant.ApiFitPlanConstant
@@ -21,11 +21,10 @@ interface JsonPlaceHolderFitPlan {
     ): Single<Response<LogInUserFitPlan>>
 
     @GET(ApiFitPlanConstant.CONTENT_LIST)
-    fun getListItem(@Query("Authorization") auth: String): Single<Response<ItemListFitPlan>>
+    fun getListItem(): Single<Response<ItemListFitPlan>>
 
     @GET(ApiFitPlanConstant.ITEM_DETAILS)
     fun getItem(
-        @Query("planId") id: Int,
-        @Query("Authorization") auth: String
+        @Query("planId") id: Int
     ): Single<Response<ItemDetailsFitApp>>
 }
