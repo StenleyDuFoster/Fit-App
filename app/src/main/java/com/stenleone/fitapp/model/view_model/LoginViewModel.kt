@@ -35,7 +35,6 @@ class LoginViewModel : BaseViewModel() {
                     if(response.isSuccessful) {
 
                         sharedPreferences.setToken(response.body()!!.accessToken)
-                        Log.v("112233","save" + response.body()!!.accessToken)
                         liveUser.postValue(response.body())
                     } else {
                         liveError.postValue("error code: " + response.code().toString())

@@ -11,8 +11,10 @@ import com.stenleone.fitapp.R
 import com.stenleone.fitapp.koin.application.App
 import com.stenleone.fitapp.model.data.ItemFitApp
 import com.stenleone.fitapp.view.recycler.callback.CallBackFromRecyclerToFragment
+import kotlinx.android.synthetic.main.fragment_details.*
 
-class RecyclerAdapter(private val arrayItems: ArrayList<ItemFitApp>, listener: CallBackFromRecyclerToFragment?) :
+class RecyclerAdapter(private val arrayItems: ArrayList<ItemFitApp>, listener: CallBackFromRecyclerToFragment?,
+                      private var isLoadImage: Boolean) :
     RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     private var callBackFromRecyclerToFragment: CallBackFromRecyclerToFragment? = listener
@@ -59,11 +61,15 @@ class RecyclerAdapter(private val arrayItems: ArrayList<ItemFitApp>, listener: C
         firstText.text = (currentItem.athleteFirstName + " " + currentItem.athleteLastName)
         secondText.text = currentItem.name
 
-        Glide
-            .with(App.contextComponent)
-            .load(currentItem.imageSmallUrl)
-            .centerCrop()
-            .into(background)
+        if(!isLoadImage) {
+            background.visibility = View.GONE
+        }
+            Glide
+                .with(App.contextComponent)
+                .load(currentItem.imageSmallUrl)
+                .centerCrop()
+                .into(background)
+
     }
 
     override fun getItemCount(): Int {

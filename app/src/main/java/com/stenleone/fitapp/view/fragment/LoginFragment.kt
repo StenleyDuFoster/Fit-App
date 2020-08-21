@@ -40,13 +40,13 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
-        (viewModel as LoginViewModel).getUser().observe(viewLifecycleOwner, Observer { user ->
+        (viewModel as LoginViewModel).getUser().observe(viewLifecycleOwner, { user ->
 
             navController.navigate(R.id.action_loginFragment_to_mainActivity)
             activity?.finish()
         })
 
-        viewModel.getError().observe(viewLifecycleOwner, Observer { throwable ->
+        viewModel.getError().observe(viewLifecycleOwner, { throwable ->
 
             makeToast(throwable.toString())
             setViewWaitMode(true)

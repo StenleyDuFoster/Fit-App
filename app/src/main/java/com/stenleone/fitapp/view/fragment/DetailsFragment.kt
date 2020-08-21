@@ -1,13 +1,17 @@
 package com.stenleone.fitapp.view.fragment
 
-import androidx.lifecycle.Observer
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.stenleone.fitapp.R
 import com.stenleone.fitapp.model.view_model.DetailsViewModel
 import com.stenleone.fitapp.util.easyToast.makeToast
+import com.stenleone.fitapp.util.eventBus.LoadImageEvent
+import com.stenleone.fitapp.view.activity.MainActivity
 import com.stenleone.fitapp.view.fragment.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_details.*
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class DetailsFragment : BaseFragment(R.layout.fragment_details) {
 
@@ -19,6 +23,10 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
         text_1.text = (saveContent?.get(1) + " " + saveContent?.get(2))
         text_2.text = saveContent?.get(3)
         text_3.text = ("loading...")
+
+        if(!(activity!! as MainActivity).loadImage) {
+            image.visibility = View.GONE
+        }
 
         Glide
             .with(context!!)
@@ -32,12 +40,12 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
 
         viewModel = ViewModelProvider(this).get(DetailsViewModel::class.java)
 
-        (viewModel as DetailsViewModel).getItem().observe(viewLifecycleOwner, Observer { item ->
+        (viewModel as DetailsViewModel).getItem().observe(viewLifecycleOwner, { item ->
             if(item != null)
                 text_3.text = item.result.description
         })
 
-        viewModel.getError().observe(viewLifecycleOwner, Observer { error ->
+        viewModel.getError().observe(viewLifecycleOwner, { error ->
             makeToast(error)
         })
     }

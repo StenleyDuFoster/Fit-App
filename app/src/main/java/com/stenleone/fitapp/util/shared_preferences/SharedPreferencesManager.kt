@@ -7,16 +7,23 @@ import com.stenleone.fitapp.util.constant.SharedManagerConstant
 class SharedPreferencesManager {
 
     private val sharedPreferences: SharedPreferences
+    private val editor: SharedPreferences.Editor
 
     init {
         sharedPreferences = App.contextComponent.getSharedPreferences(SharedManagerConstant.TOKEN, 0)
+        editor = sharedPreferences.edit()
     }
 
     fun setToken(token: String?) {
-        val editor: SharedPreferences.Editor = sharedPreferences.edit()
         editor.putString(SharedManagerConstant.TOKEN, token)
         editor.apply()
     }
 
+    fun setIsLoadImage(isLoad: Boolean) {
+        editor.putBoolean(SharedManagerConstant.LOAD_IMAGE, isLoad)
+        editor.apply()
+    }
+
     fun getToken(): String? = sharedPreferences.getString(SharedManagerConstant.TOKEN, null)
+    fun getIsLoadImage():Boolean = sharedPreferences.getBoolean(SharedManagerConstant.LOAD_IMAGE, true)
 }

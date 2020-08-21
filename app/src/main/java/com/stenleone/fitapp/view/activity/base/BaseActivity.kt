@@ -8,9 +8,11 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.example.myapp.MyEventBusIndex
 import com.stenleone.fitapp.util.connection_manager.NetworkChangeReceiver
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.app_bar.*
+import org.greenrobot.eventbus.EventBus
 
 abstract class BaseActivity(private val layView: Int) : AppCompatActivity() {
 
@@ -19,7 +21,10 @@ abstract class BaseActivity(private val layView: Int) : AppCompatActivity() {
 
     private fun removeNotifyBar() {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +42,7 @@ abstract class BaseActivity(private val layView: Int) : AppCompatActivity() {
     }
 
     override fun onStart() {
+
         val intentFilter = IntentFilter()
         intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION)
         registerReceiver(networkChangeReceiver, intentFilter)

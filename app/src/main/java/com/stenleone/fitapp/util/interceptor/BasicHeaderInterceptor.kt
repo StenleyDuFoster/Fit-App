@@ -1,6 +1,5 @@
 package com.stenleone.fitapp.util.interceptor
 
-import android.util.Log
 import com.stenleone.fitapp.util.shared_preferences.SharedPreferencesManager
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -23,7 +22,6 @@ class BasicHeaderInterceptor : Interceptor {
             } else {
                 builder.addHeader("Authorization", "Bearer ${accessToken}")
             }
-            Log.v("112233","load"+accessToken.toString())
 
         return chain.proceed(builder.build())
     }
