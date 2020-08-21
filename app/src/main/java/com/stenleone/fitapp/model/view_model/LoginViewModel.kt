@@ -1,9 +1,11 @@
 package com.stenleone.fitapp.model.view_model
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.stenleone.fitapp.model.data.LogInUserFitPlan
 import com.stenleone.fitapp.model.view_model.base.BaseViewModel
 import com.stenleone.fitapp.util.easyToast.makeToast
+import com.stenleone.fitapp.util.shared_preferences.SharedPreferencesManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.rxkotlin.subscribeBy
@@ -11,6 +13,7 @@ import io.reactivex.rxkotlin.subscribeBy
 class LoginViewModel : BaseViewModel() {
 
     private val liveUser = MutableLiveData<LogInUserFitPlan>()
+    private val sharedPreferences = SharedPreferencesManager()
 
     fun getUser() = liveUser
 
@@ -30,6 +33,9 @@ class LoginViewModel : BaseViewModel() {
                 {
                     response ->
                     if(response.isSuccessful) {
+
+                        sharedPreferences.setToken(response.body()!!.accessToken)
+                        Log.v("112233","save" + response.body()!!.accessToken)
                         liveUser.postValue(response.body())
                     } else {
                         liveError.postValue("error code: " + response.code().toString())

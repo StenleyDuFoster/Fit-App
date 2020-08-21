@@ -52,7 +52,7 @@ class CustomAnimate {
         fun alphaFadeOut(v: View) {
 
             val anim = ObjectAnimator.ofFloat(v, View.ALPHA, v.alpha, 0f)
-            anim.duration = 400
+            anim.duration = 4000
             anim.start()
         }
     }

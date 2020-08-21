@@ -4,12 +4,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
 import com.stenleone.fitapp.R
+import com.stenleone.fitapp.model.local.dao.TokenDao
+import com.stenleone.fitapp.model.local.db.RoomToken
+import com.stenleone.fitapp.model.local.entity.TokenEntity
 import com.stenleone.fitapp.model.view_model.LoginViewModel
-import com.stenleone.fitapp.util.Token
 import com.stenleone.fitapp.util.anim.CustomAnimate
 import com.stenleone.fitapp.util.constant.ApiFitPlanConstant
 import com.stenleone.fitapp.util.easyToast.makeToast
 import com.stenleone.fitapp.view.fragment.base.BaseFragment
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Consumer
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
 
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -31,13 +36,12 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         }
     }
 
-    override fun initViewModel() {
+    override fun initModel() {
 
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
         (viewModel as LoginViewModel).getUser().observe(viewLifecycleOwner, Observer { user ->
 
-            Token.token = user.accessToken
             navController.navigate(R.id.action_loginFragment_to_mainActivity)
             activity?.finish()
         })

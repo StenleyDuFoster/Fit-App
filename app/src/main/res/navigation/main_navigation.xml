@@ -20,14 +20,13 @@
             app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="false" />
         <action
-            android:id="@+id/action_mainFragment_to_settingsFragment"
+            android:id="@+id/to_settingsFragment"
             app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/in_left_right"
+            app:exitAnim="@anim/out_leaft_right"
             app:launchSingleTop="false"
             app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="false" />
-        <action
-            android:id="@+id/action_mainFragment_to_loginFragment2"
-            app:destination="@id/loginFragment2" />
     </fragment>
 
     <fragment
@@ -36,11 +35,10 @@
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" >
         <action
-            android:id="@+id/action_detailsFragment_to_loginFragment2"
-            app:destination="@id/loginFragment2" />
-        <action
-            android:id="@+id/action_detailsFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            android:id="@+id/to_settingsFragment"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/in_left_right"
+            app:exitAnim="@anim/out_leaft_right" />
     </fragment>
 
     <fragment
@@ -49,12 +47,12 @@
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
         <action
-            android:id="@+id/action_settingsFragment_to_loginFragment2"
-            app:destination="@id/loginFragment2" />
+            android:id="@+id/action_settingsFragment_to_loginActivity"
+            app:destination="@id/loginActivity" />
     </fragment>
-    <fragment
-        android:id="@+id/loginFragment2"
-        android:name="com.stenleone.fitapp.view.fragment.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.stenleone.fitapp.view.activity.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
 </navigation>

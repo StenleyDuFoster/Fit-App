@@ -1,9 +1,11 @@
 package com.stenleone.fitapp.view.fragment
 
 import android.os.Bundle
+
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+
 import com.stenleone.fitapp.R
 import com.stenleone.fitapp.model.data.ItemFitApp
 import com.stenleone.fitapp.model.view_model.ListViewModel
@@ -11,6 +13,7 @@ import com.stenleone.fitapp.util.easyToast.makeToast
 import com.stenleone.fitapp.view.fragment.base.BaseFragment
 import com.stenleone.fitapp.view.recycler.RecyclerAdapter
 import com.stenleone.fitapp.view.recycler.callback.CallBackFromRecyclerToFragment
+
 import kotlinx.android.synthetic.main.fragment_main.*
 
 
@@ -28,7 +31,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main), CallBackFromRecyclerT
         activity!!.actionBar!!.setDisplayHomeAsUpEnabled(false)
     }
 
-    override fun initViewModel() {
+    override fun initModel() {
 
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
 

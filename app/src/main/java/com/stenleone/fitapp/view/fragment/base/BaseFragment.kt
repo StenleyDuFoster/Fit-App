@@ -14,7 +14,7 @@ abstract class BaseFragment(private val layView: Int) : Fragment() {
     protected lateinit var navController: NavController
     protected lateinit var viewModel: BaseViewModel
 
-    abstract fun initViewModel()
+    abstract fun initModel()
     abstract fun initAfterViewCreated()
 
     override fun onCreateView(
@@ -27,7 +27,7 @@ abstract class BaseFragment(private val layView: Int) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         navController = Navigation.findNavController(view)
-        initViewModel()
+        initModel()
         initAfterViewCreated()
         super.onViewCreated(view, savedInstanceState)
     }

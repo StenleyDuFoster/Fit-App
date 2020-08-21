@@ -12,14 +12,15 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
 
-
         <action
             android:id="@+id/action_loginFragment_to_mainActivity"
             app:destination="@id/mainActivity"
             app:enterAnim="@anim/fragment_fade_enter"
             app:exitAnim="@anim/fragment_open_enter"
+            app:launchSingleTop="true"
             app:popEnterAnim="@anim/fragment_fade_exit"
-            app:popExitAnim="@anim/nav_default_pop_enter_anim" />
+            app:popExitAnim="@anim/nav_default_pop_enter_anim"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <activity

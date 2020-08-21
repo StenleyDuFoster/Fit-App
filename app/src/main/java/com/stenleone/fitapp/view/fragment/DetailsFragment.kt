@@ -28,7 +28,7 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
         (viewModel as DetailsViewModel).getItemDetails(saveContent[0].toInt())
     }
 
-    override fun initViewModel() {
+    override fun initModel() {
 
         viewModel = ViewModelProvider(this).get(DetailsViewModel::class.java)
 
