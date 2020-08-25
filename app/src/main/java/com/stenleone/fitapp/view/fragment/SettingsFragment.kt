@@ -2,7 +2,7 @@ package com.stenleone.fitapp.view.fragment
 
 import android.widget.CompoundButton
 import com.stenleone.fitapp.R
-import com.stenleone.fitapp.util.eventBus.LoadImageEvent
+import com.stenleone.fitapp.util.eventBus.LoadImageEventBus
 import com.stenleone.fitapp.util.shared_preferences.SharedPreferencesManager
 import com.stenleone.fitapp.view.fragment.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_settings.*
@@ -29,8 +29,6 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings), CompoundButto
 
     override fun onCheckedChanged(button: CompoundButton?, isSwitched: Boolean) {
 
-        sharedPreferences.setIsLoadImage(isSwitched)
-        EventBus.getDefault().post(LoadImageEvent(isSwitched))
-        sharedPreferences.setIsLoadImage(isSwitched)
+        LoadImageEventBus.setIsLoad(isSwitched)
     }
 }

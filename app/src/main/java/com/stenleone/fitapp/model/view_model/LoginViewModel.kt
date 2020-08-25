@@ -1,6 +1,5 @@
 package com.stenleone.fitapp.model.view_model
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.stenleone.fitapp.model.data.LogInUserFitPlan
 import com.stenleone.fitapp.model.view_model.base.BaseViewModel

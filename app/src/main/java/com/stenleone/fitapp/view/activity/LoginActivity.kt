@@ -4,13 +4,10 @@ import android.os.Bundle
 import androidx.navigation.Navigation
 import com.stenleone.fitapp.R
 import com.stenleone.fitapp.util.anim.CustomAnimate
-import com.stenleone.fitapp.util.shared_preferences.SharedPreferencesManager
 import com.stenleone.fitapp.view.activity.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity(R.layout.activity_login) {
-
-    private val sharedPreferences = SharedPreferencesManager()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

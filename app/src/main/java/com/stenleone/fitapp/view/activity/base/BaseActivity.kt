@@ -11,6 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.jakewharton.rxbinding3.widget.navigationClicks
 import com.stenleone.fitapp.util.connection_manager.NetworkChangeReceiver
+import com.stenleone.fitapp.util.shared_preferences.SharedPreferencesManager
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.app_bar.*
 import java.util.concurrent.TimeUnit
@@ -18,6 +19,7 @@ import java.util.concurrent.TimeUnit
 abstract class BaseActivity(private val layView: Int) : AppCompatActivity() {
 
     private val networkChangeReceiver = NetworkChangeReceiver()
+    protected val sharedPreferences = SharedPreferencesManager()
     lateinit var navController: NavController
 
     private fun removeNotifyBar() {

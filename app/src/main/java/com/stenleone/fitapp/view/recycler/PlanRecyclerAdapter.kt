@@ -18,7 +18,7 @@ class PlanRecyclerAdapter : RecyclerView.Adapter<PlanRecyclerAdapter.ViewHolder>
 
     private var arrayItems: ArrayList<ItemFitApp> = ArrayList()
     private lateinit var listener: CallBackFromRecyclerToFragment
-    private var isLoadImage: Boolean = true
+    var isLoadImage: Boolean = true
 
     private lateinit var background: ImageView
     private lateinit var firstText: TextView
@@ -26,12 +26,10 @@ class PlanRecyclerAdapter : RecyclerView.Adapter<PlanRecyclerAdapter.ViewHolder>
 
     fun setAdapterParams(
         items: ArrayList<ItemFitApp>,
-        listener: CallBackFromRecyclerToFragment,
-        isLoadImageEvent: Boolean) {
+        listener: CallBackFromRecyclerToFragment) {
 
         this.arrayItems = items
         this.listener = listener
-        this.isLoadImage = isLoadImageEvent
     }
 
     inner class ViewHolder(itemView: View, listener: CallBackFromRecyclerToFragment?) :

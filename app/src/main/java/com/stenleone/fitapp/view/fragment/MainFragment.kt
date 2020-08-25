@@ -9,7 +9,7 @@ import com.stenleone.fitapp.model.data.ItemFitApp
 import com.stenleone.fitapp.model.view_model.ListViewModel
 import com.stenleone.fitapp.util.anim.CustomAnimate
 import com.stenleone.fitapp.util.easyToast.makeToast
-import com.stenleone.fitapp.view.activity.MainActivity
+import com.stenleone.fitapp.util.eventBus.LoadImageEventBus
 import com.stenleone.fitapp.view.fragment.base.BaseFragment
 import com.stenleone.fitapp.view.recycler.PlanRecyclerAdapter
 import com.stenleone.fitapp.view.recycler.callback.CallBackFromRecyclerToFragment
@@ -32,6 +32,10 @@ class MainFragment : BaseFragment(R.layout.fragment_main), CallBackFromRecyclerT
         recycler.layoutManager = LinearLayoutManager(context)
         activity!!.actionBar!!.setDisplayHomeAsUpEnabled(false)
         recycler.adapter = PlanRecyclerAdapter()
+
+        LoadImageEventBus.getObservableIsLoad().subscribe{
+            (recycler.adapter as PlanRecyclerAdapter).isLoadImage = it
+        }
     }
 
     override fun initModel() {
@@ -44,8 +48,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main), CallBackFromRecyclerT
             itemsList = ArrayList(list)
             (recycler.adapter as PlanRecyclerAdapter).setAdapterParams(
                 itemsList,
-                this as CallBackFromRecyclerToFragment,
-                (activity!! as MainActivity).loadImage
+                this as CallBackFromRecyclerToFragment
             )
             this.recycler.adapter?.notifyDataSetChanged()
         })
