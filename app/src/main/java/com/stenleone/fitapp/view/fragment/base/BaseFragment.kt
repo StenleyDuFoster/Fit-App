@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.stenleone.fitapp.model.view_model.base.BaseViewModel
+import com.stenleone.fitapp.view.activity.base.BaseActivity
 
 abstract class BaseFragment(private val layView: Int) : Fragment() {
 
@@ -30,5 +31,10 @@ abstract class BaseFragment(private val layView: Int) : Fragment() {
         initModel()
         initAfterViewCreated()
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onDestroyView() {
+        (activity!! as BaseActivity).networkChangeReceiver.removeRunnableCode()
+        super.onDestroyView()
     }
 }

@@ -1,6 +1,6 @@
 package com.stenleone.fitapp.koin.module
 
-import com.stenleone.fitapp.util.interceptor.BasicHeaderInterceptor
+import com.stenleone.fitapp.model.network.interceptor.BasicHeaderInterceptor
 import com.stenleone.fitapp.model.network.JsonPlaceHolderFitPlan
 import com.stenleone.fitapp.util.constant.ApiFitPlanConstant
 import io.reactivex.schedulers.Schedulers

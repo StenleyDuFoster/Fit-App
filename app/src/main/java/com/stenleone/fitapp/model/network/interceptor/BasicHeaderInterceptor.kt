@@ -1,4 +1,4 @@
-package com.stenleone.fitapp.util.interceptor
+package com.stenleone.fitapp.model.network.interceptor
 
 import com.stenleone.fitapp.util.shared_preferences.SharedPreferencesManager
 import okhttp3.Interceptor

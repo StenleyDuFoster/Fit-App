@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit
 
 abstract class BaseActivity(private val layView: Int) : AppCompatActivity() {
 
-    private val networkChangeReceiver = NetworkChangeReceiver()
+    val networkChangeReceiver = NetworkChangeReceiver()
     protected val sharedPreferences = SharedPreferencesManager
     lateinit var navController: NavController
 

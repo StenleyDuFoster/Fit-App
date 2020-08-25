@@ -9,6 +9,7 @@ import com.stenleone.fitapp.model.view_model.LoginViewModel
 import com.stenleone.fitapp.util.anim.CustomAnimate
 import com.stenleone.fitapp.util.constant.ApiFitPlanConstant
 import com.stenleone.fitapp.util.easyToast.makeToast
+import com.stenleone.fitapp.view.activity.base.BaseActivity
 import com.stenleone.fitapp.view.fragment.base.BaseFragment
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -27,13 +28,21 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         loginButton.clicks()
             .throttleFirst(1, TimeUnit.SECONDS)
             .subscribe {
-                (viewModel as LoginViewModel).logInFitPlan(
-                    textInputEmailEditText.text.toString(),
-                    textInputPasswordEditText.text.toString()
-                )
-                setViewWaitMode(false)
+                authWithModel()
             }
         activity!!.loadStatus.text = getString(R.string.auth_message)
+        (activity!! as BaseActivity).networkChangeReceiver.setRunnableCode({
+            authWithModel()
+        })
+    }
+
+    private fun authWithModel() {
+
+        (viewModel as LoginViewModel).logInFitPlan(
+            textInputEmailEditText.text.toString(),
+            textInputPasswordEditText.text.toString()
+        )
+        setViewWaitMode(false)
     }
 
     override fun initModel() {

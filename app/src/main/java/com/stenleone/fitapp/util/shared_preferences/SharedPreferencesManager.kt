@@ -1,6 +1,7 @@
 package com.stenleone.fitapp.util.shared_preferences
 
 import android.content.SharedPreferences
+
 import com.stenleone.fitapp.koin.application.App
 import com.stenleone.fitapp.util.constant.SharedManagerConstant
 

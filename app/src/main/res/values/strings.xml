@@ -3,4 +3,6 @@
     <string name="loading">loading</string>
     <string name="auth_message">Authorization</string>
     <string name="loading_content">Loading fit plans</string>
+    <string name="connection_lost">connection lost</string>
+    <string name="connection_restored">connection restored</string>
 </resources>

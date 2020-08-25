@@ -2,11 +2,10 @@ package com.stenleone.fitapp.view.fragment
 
 import android.widget.CompoundButton
 import com.stenleone.fitapp.R
-import com.stenleone.fitapp.util.eventBus.LoadImageEventBus
+import com.stenleone.fitapp.util.eventBus.IsLoadImageEventBus
 import com.stenleone.fitapp.util.shared_preferences.SharedPreferencesManager
 import com.stenleone.fitapp.view.fragment.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_settings.*
-import org.greenrobot.eventbus.EventBus
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings), CompoundButton.OnCheckedChangeListener {
 
@@ -29,6 +28,6 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings), CompoundButto
 
     override fun onCheckedChanged(button: CompoundButton?, isSwitched: Boolean) {
 
-        LoadImageEventBus.setIsLoad(isSwitched)
+        IsLoadImageEventBus.setObservable(isSwitched)
     }
 }

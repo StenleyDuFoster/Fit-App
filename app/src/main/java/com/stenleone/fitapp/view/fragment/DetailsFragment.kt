@@ -6,7 +6,7 @@ import com.bumptech.glide.Glide
 import com.stenleone.fitapp.R
 import com.stenleone.fitapp.model.view_model.DetailsViewModel
 import com.stenleone.fitapp.util.easyToast.makeToast
-import com.stenleone.fitapp.util.eventBus.LoadImageEventBus
+import com.stenleone.fitapp.util.eventBus.IsLoadImageEventBus
 import com.stenleone.fitapp.view.fragment.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_details.*
 
@@ -21,8 +21,8 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
         text_2.text = saveContent?.get(3)
         text_3.text = ("loading...")
 
-        LoadImageEventBus.getObservableIsLoad().subscribe{
-            if(!it) {
+        IsLoadImageEventBus.getObservable().subscribe{
+            if(!(it as Boolean)) {
                 image.visibility = View.GONE
             }
         }

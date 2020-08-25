@@ -9,7 +9,8 @@ import com.stenleone.fitapp.model.data.ItemFitApp
 import com.stenleone.fitapp.model.view_model.ListViewModel
 import com.stenleone.fitapp.util.anim.CustomAnimate
 import com.stenleone.fitapp.util.easyToast.makeToast
-import com.stenleone.fitapp.util.eventBus.LoadImageEventBus
+import com.stenleone.fitapp.util.eventBus.IsLoadImageEventBus
+import com.stenleone.fitapp.view.activity.base.BaseActivity
 import com.stenleone.fitapp.view.fragment.base.BaseFragment
 import com.stenleone.fitapp.view.recycler.PlanRecyclerAdapter
 import com.stenleone.fitapp.view.recycler.callback.CallBackFromRecyclerToFragment
@@ -24,17 +25,24 @@ class MainFragment : BaseFragment(R.layout.fragment_main), CallBackFromRecyclerT
 
     override fun initAfterViewCreated() {
 
-        if(itemsList.size < 1) {
-            (viewModel as ListViewModel).getListFitPlan()
-            CustomAnimate.alphaFadeIn(activity!!.loadLay)
-            activity!!.loadStatus.text = getString(R.string.loading_content)
-        }
+        getModelList()
         recycler.layoutManager = LinearLayoutManager(context)
         activity!!.actionBar!!.setDisplayHomeAsUpEnabled(false)
         recycler.adapter = PlanRecyclerAdapter()
 
-        LoadImageEventBus.getObservableIsLoad().subscribe{
-            (recycler.adapter as PlanRecyclerAdapter).isLoadImage = it
+        IsLoadImageEventBus.getObservable().subscribe{
+            (recycler.adapter as PlanRecyclerAdapter).isLoadImage = (it as Boolean)
+        }
+        (activity!! as BaseActivity).networkChangeReceiver.setRunnableCode({
+            getModelList()
+        })
+    }
+
+    private fun getModelList() {
+        if(itemsList.size < 1) {
+            (viewModel as ListViewModel).getListFitPlan()
+            CustomAnimate.alphaFadeIn(activity!!.loadLay)
+            activity!!.loadStatus.text = getString(R.string.loading_content)
         }
     }
 

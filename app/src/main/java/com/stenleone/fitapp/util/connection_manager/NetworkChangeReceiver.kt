@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
+import com.stenleone.fitapp.R
 import com.stenleone.fitapp.util.easyToast.makeToast
 
 class NetworkChangeReceiver: BroadcastReceiver() {
@@ -22,7 +23,7 @@ class NetworkChangeReceiver: BroadcastReceiver() {
             newNetworkState = false
 
             if(newNetworkState != oldNetworkState)
-                makeToast("соединение потеряно")
+                makeToast(context.getString(R.string.connection_lost))
 
             oldNetworkState = newNetworkState
         }
@@ -31,7 +32,7 @@ class NetworkChangeReceiver: BroadcastReceiver() {
             newNetworkState = true
 
             if(newNetworkState != oldNetworkState)
-                makeToast("соединение востановлено")
+                makeToast(context.getString(R.string.connection_restored))
 
             oldNetworkState = newNetworkState
             doAfterConnectionWillResume?.run()
