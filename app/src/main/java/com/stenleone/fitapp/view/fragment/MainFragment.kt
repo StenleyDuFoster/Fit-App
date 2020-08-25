@@ -7,13 +7,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.stenleone.fitapp.R
 import com.stenleone.fitapp.model.data.ItemFitApp
 import com.stenleone.fitapp.model.view_model.ListViewModel
+import com.stenleone.fitapp.util.anim.CustomAnimate
 import com.stenleone.fitapp.util.easyToast.makeToast
 import com.stenleone.fitapp.view.activity.MainActivity
 import com.stenleone.fitapp.view.fragment.base.BaseFragment
 import com.stenleone.fitapp.view.recycler.PlanRecyclerAdapter
 import com.stenleone.fitapp.view.recycler.callback.CallBackFromRecyclerToFragment
+import kotlinx.android.synthetic.main.activity_main.*
 
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.loading_lay.*
 
 class MainFragment : BaseFragment(R.layout.fragment_main), CallBackFromRecyclerToFragment {
 
@@ -23,6 +26,8 @@ class MainFragment : BaseFragment(R.layout.fragment_main), CallBackFromRecyclerT
 
         if(itemsList.size < 1) {
             (viewModel as ListViewModel).getListFitPlan()
+            CustomAnimate.alphaFadeIn(activity!!.loadLay)
+            activity!!.loadStatus.setText(getString(R.string.loading_content))
         }
         recycler.layoutManager = LinearLayoutManager(context)
         activity!!.actionBar!!.setDisplayHomeAsUpEnabled(false)
@@ -35,6 +40,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main), CallBackFromRecyclerT
 
         (viewModel as ListViewModel).getList().observe(viewLifecycleOwner, { list ->
 
+            CustomAnimate.alphaFadeOut(activity!!.loadLay)
             itemsList = ArrayList(list)
             (recycler.adapter as PlanRecyclerAdapter).setAdapterParams(
                 itemsList,

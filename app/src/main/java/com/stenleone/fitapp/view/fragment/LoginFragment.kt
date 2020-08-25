@@ -12,6 +12,7 @@ import com.stenleone.fitapp.view.fragment.base.BaseFragment
 import kotlinx.android.synthetic.main.activity_login.*
 
 import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.android.synthetic.main.loading_lay.*
 import java.util.concurrent.TimeUnit
 
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
@@ -28,8 +29,9 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                     textInputEmailEditText.text.toString(),
                     textInputPasswordEditText.text.toString()
                 )
+                setViewWaitMode(false)
             }
-        setViewWaitMode(false)
+        activity!!.loadStatus.setText(getString(R.string.auth_message))
     }
 
     override fun initModel() {

@@ -1,7 +1,7 @@
 package com.stenleone.fitapp.model.view_model
 
 import androidx.lifecycle.MutableLiveData
-import com.stenleone.fitapp.model.data.details.ItemDetailsFitApp
+import com.stenleone.fitapp.model.data.details.ItemListDetailsFitApp
 import com.stenleone.fitapp.model.view_model.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
@@ -9,7 +9,7 @@ import io.reactivex.schedulers.Schedulers
 
 class DetailsViewModel : BaseViewModel() {
 
-    private val liveItem = MutableLiveData<ItemDetailsFitApp>()
+    private val liveItem = MutableLiveData<ItemListDetailsFitApp>()
 
     fun getItem() = liveItem
 

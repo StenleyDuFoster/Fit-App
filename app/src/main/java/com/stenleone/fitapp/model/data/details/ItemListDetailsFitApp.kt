@@ -1,6 +1,6 @@
 package com.stenleone.fitapp.model.data.details
 
-data class ItemDetailsFitApp (
+data class ItemListDetailsFitApp (
 
     val error: Any,
     val errorObj: Any,
