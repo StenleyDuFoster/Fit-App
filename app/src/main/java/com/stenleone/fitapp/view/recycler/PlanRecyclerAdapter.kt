@@ -7,21 +7,32 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.jakewharton.rxbinding3.view.clicks
 import com.stenleone.fitapp.R
 import com.stenleone.fitapp.koin.application.App
 import com.stenleone.fitapp.model.data.ItemFitApp
 import com.stenleone.fitapp.view.recycler.callback.CallBackFromRecyclerToFragment
-import kotlinx.android.synthetic.main.fragment_details.*
+import java.util.concurrent.TimeUnit
 
-class RecyclerAdapter(private val arrayItems: ArrayList<ItemFitApp>, listener: CallBackFromRecyclerToFragment?,
-                      private var isLoadImage: Boolean) :
-    RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class PlanRecyclerAdapter : RecyclerView.Adapter<PlanRecyclerAdapter.ViewHolder>() {
 
-    private var callBackFromRecyclerToFragment: CallBackFromRecyclerToFragment? = listener
+    private var arrayItems: ArrayList<ItemFitApp> = ArrayList()
+    private lateinit var listener: CallBackFromRecyclerToFragment
+    private var isLoadImage: Boolean = true
 
     private lateinit var background: ImageView
     private lateinit var firstText: TextView
     private lateinit var secondText: TextView
+
+    fun setAdapterParams(
+        items: ArrayList<ItemFitApp>,
+        listener: CallBackFromRecyclerToFragment,
+        isLoadImageEvent: Boolean) {
+
+        this.arrayItems = items
+        this.listener = listener
+        this.isLoadImage = isLoadImageEvent
+    }
 
     inner class ViewHolder(itemView: View, listener: CallBackFromRecyclerToFragment?) :
         RecyclerView.ViewHolder(itemView) {
@@ -31,7 +42,9 @@ class RecyclerAdapter(private val arrayItems: ArrayList<ItemFitApp>, listener: C
             firstText = itemView.findViewById(R.id.firstText)
             secondText = itemView.findViewById(R.id.secondText)
 
-            itemView.setOnClickListener {
+            itemView.clicks()
+                .throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe {
                 if (listener != null) {
                     val position = adapterPosition
                     if (position != RecyclerView.NO_POSITION) {
@@ -49,11 +62,11 @@ class RecyclerAdapter(private val arrayItems: ArrayList<ItemFitApp>, listener: C
         val lay: Int = R.layout.item_lay
 
         val v: View = LayoutInflater.from(parent.context).inflate(lay, parent, false)
-        return ViewHolder(v, callBackFromRecyclerToFragment)
+        return ViewHolder(v, listener)
     }
 
     override fun onBindViewHolder(
-        holder: RecyclerAdapter.ViewHolder,
+        holder: PlanRecyclerAdapter.ViewHolder,
         position: Int
     ) {
         val currentItem: ItemFitApp = arrayItems[position]

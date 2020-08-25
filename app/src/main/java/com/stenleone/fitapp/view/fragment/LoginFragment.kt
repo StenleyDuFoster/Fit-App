@@ -1,23 +1,18 @@
 package com.stenleone.fitapp.view.fragment
 
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.jakewharton.rxbinding3.view.clicks
 
 import com.stenleone.fitapp.R
-import com.stenleone.fitapp.model.local.dao.TokenDao
-import com.stenleone.fitapp.model.local.db.RoomToken
-import com.stenleone.fitapp.model.local.entity.TokenEntity
 import com.stenleone.fitapp.model.view_model.LoginViewModel
 import com.stenleone.fitapp.util.anim.CustomAnimate
 import com.stenleone.fitapp.util.constant.ApiFitPlanConstant
 import com.stenleone.fitapp.util.easyToast.makeToast
 import com.stenleone.fitapp.view.fragment.base.BaseFragment
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
 
 import kotlinx.android.synthetic.main.fragment_login.*
+import java.util.concurrent.TimeUnit
 
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
@@ -26,14 +21,15 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         textInputEmailEditText.setText(ApiFitPlanConstant.USER_LOGIN)
         textInputPasswordEditText.setText(ApiFitPlanConstant.USER_PASSWORD)
 
-        loginButton.setOnClickListener {
-
-            (viewModel as LoginViewModel).logInFitPlan(
-                textInputEmailEditText.text.toString(),
-                textInputPasswordEditText.text.toString())
-
-            setViewWaitMode(false)
-        }
+        loginButton.clicks()
+            .throttleFirst(1, TimeUnit.SECONDS)
+            .subscribe {
+                (viewModel as LoginViewModel).logInFitPlan(
+                    textInputEmailEditText.text.toString(),
+                    textInputPasswordEditText.text.toString()
+                )
+            }
+        setViewWaitMode(false)
     }
 
     override fun initModel() {

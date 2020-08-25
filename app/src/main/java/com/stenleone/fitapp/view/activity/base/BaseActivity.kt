@@ -9,10 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.myapp.MyEventBusIndex
+import com.jakewharton.rxbinding3.view.clicks
+import com.jakewharton.rxbinding3.widget.navigationClicks
 import com.stenleone.fitapp.util.connection_manager.NetworkChangeReceiver
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.app_bar.*
 import org.greenrobot.eventbus.EventBus
+import java.util.concurrent.TimeUnit
 
 abstract class BaseActivity(private val layView: Int) : AppCompatActivity() {
 
@@ -35,9 +38,11 @@ abstract class BaseActivity(private val layView: Int) : AppCompatActivity() {
 
         if(toolBar != null) {
             setActionBar(toolBar)
-            toolBar.setNavigationOnClickListener {
-                onBackPressed()
-            }
+            toolBar.navigationClicks()
+                .throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe {
+                    onBackPressed()
+                }
         }
     }
 

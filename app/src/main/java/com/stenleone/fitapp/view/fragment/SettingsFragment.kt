@@ -24,11 +24,13 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings), CompoundButto
         }
 
         imageSwitch.setOnCheckedChangeListener(this)
+        imageSwitch.isChecked = sharedPreferences.getIsLoadImage()
     }
 
     override fun onCheckedChanged(button: CompoundButton?, isSwitched: Boolean) {
 
         sharedPreferences.setIsLoadImage(isSwitched)
         EventBus.getDefault().post(LoadImageEvent(isSwitched))
+        sharedPreferences.setIsLoadImage(isSwitched)
     }
 }

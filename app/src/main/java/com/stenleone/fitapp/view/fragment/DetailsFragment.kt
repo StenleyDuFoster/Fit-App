@@ -6,12 +6,9 @@ import com.bumptech.glide.Glide
 import com.stenleone.fitapp.R
 import com.stenleone.fitapp.model.view_model.DetailsViewModel
 import com.stenleone.fitapp.util.easyToast.makeToast
-import com.stenleone.fitapp.util.eventBus.LoadImageEvent
 import com.stenleone.fitapp.view.activity.MainActivity
 import com.stenleone.fitapp.view.fragment.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_details.*
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 
 class DetailsFragment : BaseFragment(R.layout.fragment_details) {
 
