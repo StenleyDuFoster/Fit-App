@@ -12,7 +12,7 @@ import io.reactivex.rxkotlin.subscribeBy
 class LoginViewModel : BaseViewModel() {
 
     private val liveUser = MutableLiveData<LogInUserFitPlan>()
-    private val sharedPreferences = SharedPreferencesManager()
+    private val sharedPreferences = SharedPreferencesManager
 
     fun getUser() = liveUser
 

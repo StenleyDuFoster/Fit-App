@@ -5,8 +5,8 @@ import io.reactivex.Observable
 
 object LoadImageEventBus {
 
-    val sharedPreferences = SharedPreferencesManager()
-    var isLoadImageObservable = Observable.just(sharedPreferences.getIsLoadImage())
+    private val sharedPreferences = SharedPreferencesManager
+    private var isLoadImageObservable = Observable.just(sharedPreferences.getIsLoadImage())
 
     fun setIsLoad(isLoad: Boolean) {
         isLoadImageObservable = Observable.just(isLoad)

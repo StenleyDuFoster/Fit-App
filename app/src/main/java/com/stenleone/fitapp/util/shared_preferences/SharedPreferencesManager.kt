@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import com.stenleone.fitapp.koin.application.App
 import com.stenleone.fitapp.util.constant.SharedManagerConstant
 
-class SharedPreferencesManager {
+object SharedPreferencesManager {
 
     private val sharedPreferences: SharedPreferences
     private val editor: SharedPreferences.Editor

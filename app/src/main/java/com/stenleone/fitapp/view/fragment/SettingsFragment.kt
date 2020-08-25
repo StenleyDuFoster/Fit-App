@@ -10,7 +10,7 @@ import org.greenrobot.eventbus.EventBus
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings), CompoundButton.OnCheckedChangeListener {
 
-    private val sharedPreferences = SharedPreferencesManager()
+    private val sharedPreferences = SharedPreferencesManager
 
     override fun initModel() { }
 

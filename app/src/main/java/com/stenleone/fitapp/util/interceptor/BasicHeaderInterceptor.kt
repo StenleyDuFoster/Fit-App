@@ -9,7 +9,7 @@ class BasicHeaderInterceptor : Interceptor {
     private val accessToken: String?
 
     init {
-        accessToken = SharedPreferencesManager().getToken()
+        accessToken = SharedPreferencesManager.getToken()
     }
 
     override fun intercept(chain: Interceptor.Chain): Response {
