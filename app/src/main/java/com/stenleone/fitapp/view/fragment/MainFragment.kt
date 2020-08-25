@@ -25,10 +25,9 @@ class MainFragment : BaseFragment(R.layout.fragment_main), CallBackFromRecyclerT
 
     override fun initAfterViewCreated() {
 
-        getModelList()
-        recycler.layoutManager = LinearLayoutManager(context)
         activity!!.actionBar!!.setDisplayHomeAsUpEnabled(false)
-        recycler.adapter = PlanRecyclerAdapter()
+        getModelList()
+        initRecycler()
 
         IsLoadImageEventBus.getObservable().subscribe{
             (recycler.adapter as PlanRecyclerAdapter).isLoadImage = (it as Boolean)
@@ -46,13 +45,18 @@ class MainFragment : BaseFragment(R.layout.fragment_main), CallBackFromRecyclerT
         }
     }
 
+    private fun initRecycler() {
+        recycler.layoutManager = LinearLayoutManager(context)
+        recycler.adapter = PlanRecyclerAdapter()
+    }
+
     override fun initModel() {
 
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
 
         (viewModel as ListViewModel).getList().observe(viewLifecycleOwner, { list ->
 
-            CustomAnimate.alphaFadeOut(activity!!.loadLay)
+            animLoad()
             itemsList = ArrayList(list)
             (recycler.adapter as PlanRecyclerAdapter).setAdapterParams(
                 itemsList,
@@ -65,6 +69,11 @@ class MainFragment : BaseFragment(R.layout.fragment_main), CallBackFromRecyclerT
 
             makeToast(throwable.toString())
         })
+    }
+
+    private fun animLoad() {
+        CustomAnimate.alphaFadeOut(activity!!.loadLay)
+        view!!.setBackgroundColor(resources.getColor(R.color.colorBackground))
     }
 
     override fun itemClick(position: Int) {
