@@ -27,7 +27,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main), CallBackFromRecyclerT
         if(itemsList.size < 1) {
             (viewModel as ListViewModel).getListFitPlan()
             CustomAnimate.alphaFadeIn(activity!!.loadLay)
-            activity!!.loadStatus.setText(getString(R.string.loading_content))
+            activity!!.loadStatus.text = getString(R.string.loading_content)
         }
         recycler.layoutManager = LinearLayoutManager(context)
         activity!!.actionBar!!.setDisplayHomeAsUpEnabled(false)

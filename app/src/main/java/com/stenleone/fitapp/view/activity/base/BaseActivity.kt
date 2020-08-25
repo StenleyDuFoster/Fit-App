@@ -1,5 +1,6 @@
 package com.stenleone.fitapp.view.activity.base
 
+import android.annotation.SuppressLint
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
@@ -8,13 +9,10 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.example.myapp.MyEventBusIndex
-import com.jakewharton.rxbinding3.view.clicks
 import com.jakewharton.rxbinding3.widget.navigationClicks
 import com.stenleone.fitapp.util.connection_manager.NetworkChangeReceiver
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.app_bar.*
-import org.greenrobot.eventbus.EventBus
 import java.util.concurrent.TimeUnit
 
 abstract class BaseActivity(private val layView: Int) : AppCompatActivity() {
@@ -30,6 +28,7 @@ abstract class BaseActivity(private val layView: Int) : AppCompatActivity() {
         )
     }
 
+    @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         removeNotifyBar()

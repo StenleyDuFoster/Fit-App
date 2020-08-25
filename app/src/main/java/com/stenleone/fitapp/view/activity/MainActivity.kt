@@ -1,5 +1,6 @@
 package com.stenleone.fitapp.view.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import com.jakewharton.rxbinding3.view.clicks
 import com.stenleone.fitapp.R
@@ -20,6 +21,7 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         loadImage = loadImageEvent.isLoadImage
     }
 
+    @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         EventBus.getDefault().register(this)

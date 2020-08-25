@@ -1,5 +1,6 @@
 package com.stenleone.fitapp.view.fragment
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModelProvider
 import com.jakewharton.rxbinding3.view.clicks
 
@@ -17,6 +18,7 @@ import java.util.concurrent.TimeUnit
 
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
+    @SuppressLint("CheckResult")
     override fun initAfterViewCreated() {
 
         textInputEmailEditText.setText(ApiFitPlanConstant.USER_LOGIN)
@@ -31,14 +33,14 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                 )
                 setViewWaitMode(false)
             }
-        activity!!.loadStatus.setText(getString(R.string.auth_message))
+        activity!!.loadStatus.text = getString(R.string.auth_message)
     }
 
     override fun initModel() {
 
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
-        (viewModel as LoginViewModel).getUser().observe(viewLifecycleOwner, { user ->
+        (viewModel as LoginViewModel).getUser().observe(viewLifecycleOwner, {
 
             navController.navigate(R.id.action_loginFragment_to_mainActivity)
             activity?.finish()
