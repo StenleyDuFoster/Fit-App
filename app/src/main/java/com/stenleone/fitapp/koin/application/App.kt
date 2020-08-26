@@ -9,7 +9,7 @@ import org.koin.standalone.inject
 
 class App : Application() {
 
-    companion object: KoinComponent {
+    companion object : KoinComponent {
         val contextComponent: Context by inject()
     }
 
@@ -18,7 +18,7 @@ class App : Application() {
         initKoin()
     }
 
-    fun initKoin(){
+    fun initKoin() {
         startKoin(
             this,
             appComponent

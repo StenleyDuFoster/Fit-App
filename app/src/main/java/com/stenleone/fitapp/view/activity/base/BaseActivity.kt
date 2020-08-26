@@ -37,7 +37,7 @@ abstract class BaseActivity(private val layView: Int) : AppCompatActivity() {
         setContentView(layView)
         navController = Navigation.findNavController(fragmentContainer.view!!)
 
-        if(toolBar != null) {
+        if (toolBar != null) {
             setActionBar(toolBar)
             toolBar.navigationClicks()
                 .throttleFirst(1, TimeUnit.SECONDS)

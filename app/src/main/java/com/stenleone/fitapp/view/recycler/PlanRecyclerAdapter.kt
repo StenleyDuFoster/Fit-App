@@ -26,7 +26,8 @@ class PlanRecyclerAdapter : RecyclerView.Adapter<PlanRecyclerAdapter.ViewHolder>
 
     fun setAdapterParams(
         items: ArrayList<ItemFitApp>,
-        listener: CallBackFromRecyclerToFragment) {
+        listener: CallBackFromRecyclerToFragment
+    ) {
 
         this.arrayItems = items
         this.listener = listener
@@ -43,13 +44,13 @@ class PlanRecyclerAdapter : RecyclerView.Adapter<PlanRecyclerAdapter.ViewHolder>
             itemView.clicks()
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .subscribe {
-                if (listener != null) {
-                    val position = adapterPosition
-                    if (position != RecyclerView.NO_POSITION) {
-                        listener.itemClick(position)
+                    if (listener != null) {
+                        val position = adapterPosition
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.plansClick(position)
+                        }
                     }
                 }
-            }
         }
     }
 
@@ -72,14 +73,14 @@ class PlanRecyclerAdapter : RecyclerView.Adapter<PlanRecyclerAdapter.ViewHolder>
         firstText.text = (currentItem.athleteFirstName + " " + currentItem.athleteLastName)
         secondText.text = currentItem.name
 
-        if(!isLoadImage) {
+        if (!isLoadImage) {
             background.visibility = View.GONE
         }
-            Glide
-                .with(App.contextComponent)
-                .load(currentItem.imageSmallUrl)
-                .centerCrop()
-                .into(background)
+        Glide
+            .with(App.contextComponent)
+            .load(currentItem.imageSmallUrl)
+            .centerCrop()
+            .into(background)
 
     }
 

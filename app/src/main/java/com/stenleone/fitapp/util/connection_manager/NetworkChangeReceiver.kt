@@ -7,9 +7,9 @@ import android.net.ConnectivityManager
 import com.stenleone.fitapp.R
 import com.stenleone.fitapp.util.easyToast.makeToast
 
-class NetworkChangeReceiver: BroadcastReceiver() {
+class NetworkChangeReceiver : BroadcastReceiver() {
 
-    private var doAfterConnectionWillResume:Runnable? = null
+    private var doAfterConnectionWillResume: Runnable? = null
 
     private var oldNetworkState = true
     private var newNetworkState = true
@@ -18,33 +18,32 @@ class NetworkChangeReceiver: BroadcastReceiver() {
 
         val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-        if(cm.activeNetworkInfo == null)
-        {
+        if (cm.activeNetworkInfo == null) {
             newNetworkState = false
 
-            if(newNetworkState != oldNetworkState)
+            if (newNetworkState != oldNetworkState) {
                 makeToast(context.getString(R.string.connection_lost))
+            }
 
             oldNetworkState = newNetworkState
-        }
-        else
-        {
+        } else {
             newNetworkState = true
 
-            if(newNetworkState != oldNetworkState)
+            if (newNetworkState != oldNetworkState) {
                 makeToast(context.getString(R.string.connection_restored))
+                doAfterConnectionWillResume?.run()
+            }
 
             oldNetworkState = newNetworkState
-            doAfterConnectionWillResume?.run()
         }
     }
 
-    fun setRunnableCode(doAfterConnectionWillResume: Runnable){
+    fun setRunnableCode(doAfterConnectionWillResume: Runnable) {
 
         this.doAfterConnectionWillResume = doAfterConnectionWillResume
     }
 
-    fun removeRunnableCode(){
+    fun removeRunnableCode() {
 
         doAfterConnectionWillResume = null
     }

@@ -1,6 +1,6 @@
 package com.stenleone.fitapp.model.data
 
-data class ItemFitApp (
+data class ItemFitApp(
 
     val allowFreeAccess: Boolean,
     val athleteFirstName: String,

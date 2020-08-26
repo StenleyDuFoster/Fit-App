@@ -16,7 +16,7 @@ val retrofitFitPlanModule = module {
 
 fun provideRetrofitFitPlan(): JsonPlaceHolderFitPlan {
 
-    var interceptor =  BasicHeaderInterceptor()
+    var interceptor = BasicHeaderInterceptor()
 
     val client = OkHttpClient.Builder()
         .addInterceptor(interceptor)
@@ -27,7 +27,8 @@ fun provideRetrofitFitPlan(): JsonPlaceHolderFitPlan {
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(
             RxJava2CallAdapterFactory
-                .createWithScheduler(Schedulers.io()))
+                .createWithScheduler(Schedulers.io())
+        )
         .client(client)
         .build()
 

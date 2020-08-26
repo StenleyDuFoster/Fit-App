@@ -21,12 +21,11 @@ class DetailsViewModel : BaseViewModel() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
-                {error ->
+                { error ->
                     liveError.postValue(error.message)
                 },
-                {
-                    response ->
-                    if(response.isSuccessful) {
+                { response ->
+                    if (response.isSuccessful) {
                         liveItem.postValue(response.body())
                     } else {
                         liveError.postValue("error code: " + response.code().toString())

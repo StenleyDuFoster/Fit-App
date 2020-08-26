@@ -29,7 +29,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main), CallBackFromRecyclerT
         getModelList()
         initRecycler()
 
-        IsLoadImageEventBus.getObservable().subscribe{
+        IsLoadImageEventBus.getObservable().subscribe {
             (recycler.adapter as PlanRecyclerAdapter).isLoadImage = (it as Boolean)
         }
         (activity!! as BaseActivity).networkChangeReceiver.setRunnableCode({
@@ -38,7 +38,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main), CallBackFromRecyclerT
     }
 
     private fun getModelList() {
-        if(itemsList.size < 1) {
+        if (itemsList.size < 1) {
             (viewModel as ListViewModel).getListFitPlan()
             CustomAnimate.alphaFadeIn(activity!!.loadLay)
             activity!!.loadStatus.text = getString(R.string.loading_content)
@@ -56,7 +56,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main), CallBackFromRecyclerT
 
         (viewModel as ListViewModel).getList().observe(viewLifecycleOwner, { list ->
 
-            animLoad()
+            animLoadFadeOut()
             itemsList = ArrayList(list)
             (recycler.adapter as PlanRecyclerAdapter).setAdapterParams(
                 itemsList,
@@ -71,12 +71,12 @@ class MainFragment : BaseFragment(R.layout.fragment_main), CallBackFromRecyclerT
         })
     }
 
-    private fun animLoad() {
+    private fun animLoadFadeOut() {
         CustomAnimate.alphaFadeOut(activity!!.loadLay)
         view!!.setBackgroundColor(resources.getColor(R.color.colorBackground))
     }
 
-    override fun itemClick(position: Int) {
+    override fun plansClick(position: Int) {
 
         val bundle = Bundle()
         val arrayStringItem: ArrayList<String> = ArrayList(

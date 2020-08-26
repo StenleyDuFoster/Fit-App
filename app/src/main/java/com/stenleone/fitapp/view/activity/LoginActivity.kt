@@ -15,7 +15,7 @@ class LoginActivity : BaseActivity(R.layout.activity_login) {
         fragmentContainer.view!!.alpha = 0f
         navController = Navigation.findNavController(fragmentContainer.view!!)
 
-        if(sharedPreferences.getToken() == null) {
+        if (sharedPreferences.getToken() == null) {
             CustomAnimate.alphaFadeIn(fragmentContainer.view!!)
         } else {
             navController.navigate(R.id.action_loginFragment_to_mainActivity)

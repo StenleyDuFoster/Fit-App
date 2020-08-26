@@ -11,7 +11,8 @@ object SharedPreferencesManager {
     private val editor: SharedPreferences.Editor
 
     init {
-        sharedPreferences = App.contextComponent.getSharedPreferences(SharedManagerConstant.TOKEN, 0)
+        sharedPreferences =
+            App.contextComponent.getSharedPreferences(SharedManagerConstant.TOKEN, 0)
         editor = sharedPreferences.edit()
     }
 
@@ -26,5 +27,6 @@ object SharedPreferencesManager {
     }
 
     fun getToken(): String? = sharedPreferences.getString(SharedManagerConstant.TOKEN, null)
-    fun getIsLoadImage():Boolean = sharedPreferences.getBoolean(SharedManagerConstant.LOAD_IMAGE, true)
+    fun getIsLoadImage(): Boolean =
+        sharedPreferences.getBoolean(SharedManagerConstant.LOAD_IMAGE, true)
 }

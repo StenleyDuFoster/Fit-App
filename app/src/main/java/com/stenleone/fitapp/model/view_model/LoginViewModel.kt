@@ -25,13 +25,12 @@ class LoginViewModel : BaseViewModel() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
-                {error ->
+                { error ->
                     liveError.postValue(error.message)
                     makeToast(error.toString())
                 },
-                {
-                    response ->
-                    if(response.isSuccessful) {
+                { response ->
+                    if (response.isSuccessful) {
 
                         sharedPreferences.setToken(response.body()!!.accessToken)
                         liveUser.postValue(response.body())

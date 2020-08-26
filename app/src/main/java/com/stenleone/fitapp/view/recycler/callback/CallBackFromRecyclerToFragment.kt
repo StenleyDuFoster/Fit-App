@@ -1,6 +1,6 @@
 package com.stenleone.fitapp.view.recycler.callback
 
-interface CallBackFromRecyclerToFragment{
+interface CallBackFromRecyclerToFragment {
 
-    fun itemClick(position: Int)
+    fun plansClick(position: Int)
 }

@@ -8,52 +8,49 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.stenleone.fitapp.R
 
-class CustomAnimate {
+object CustomAnimate {
 
-    companion object {
+    fun scale(v: View, finalScale: Float) {
 
-        fun scale(v: View, finalScale: Float) {
+        val animX = ObjectAnimator.ofFloat(v, View.SCALE_X, v.scaleX, finalScale)
+        val animY = ObjectAnimator.ofFloat(v, View.SCALE_Y, v.scaleY, finalScale)
+        val anim = AnimatorSet()
+        anim.duration = 300
+        anim.play(animX).with(animY)
+        anim.start()
+    }
 
-            val animX = ObjectAnimator.ofFloat(v, View.SCALE_X, v.scaleX, finalScale)
-            val animY = ObjectAnimator.ofFloat(v, View.SCALE_Y, v.scaleY, finalScale)
-            val anim = AnimatorSet()
-            anim.duration = 300
-            anim.play(animX).with(animY)
-            anim.start()
-        }
+    fun recycler(recycler: RecyclerView) {
 
-        fun recycler(recycler: RecyclerView) {
+        val controller =
+            AnimationUtils.loadLayoutAnimation(recycler.context, R.anim.recycler_anim)
+        recycler.layoutAnimation = controller
+        recycler.startLayoutAnimation()
+    }
 
-            val controller =
-                AnimationUtils.loadLayoutAnimation(recycler.context, R.anim.recycler_anim)
-            recycler.layoutAnimation = controller
-            recycler.startLayoutAnimation()
-        }
+    fun alphaBlink(v: View) {
 
-        fun alphaBlink(v: View) {
+        val startAlpha = v.alpha
 
-            val startAlpha = v.alpha
+        val animStart = ObjectAnimator.ofFloat(v, View.ALPHA, startAlpha, 1f)
+        val animFinish = ObjectAnimator.ofFloat(v, View.ALPHA, 1f, startAlpha)
+        val anim = AnimatorSet()
+        anim.duration = 200
+        anim.play(animFinish).after(animStart)
+        anim.start()
+    }
 
-            val animStart = ObjectAnimator.ofFloat(v, View.ALPHA, startAlpha, 1f)
-            val animFinish = ObjectAnimator.ofFloat(v, View.ALPHA, 1f, startAlpha)
-            val anim = AnimatorSet()
-            anim.duration = 200
-            anim.play(animFinish).after(animStart)
-            anim.start()
-        }
+    fun alphaFadeIn(v: View) {
 
-        fun alphaFadeIn(v: View) {
+        val anim = ObjectAnimator.ofFloat(v, View.ALPHA, v.alpha, 1f)
+        anim.duration = 400
+        anim.start()
+    }
 
-            val anim = ObjectAnimator.ofFloat(v, View.ALPHA, v.alpha, 1f)
-            anim.duration = 400
-            anim.start()
-        }
+    fun alphaFadeOut(v: View) {
 
-        fun alphaFadeOut(v: View) {
-
-            val anim = ObjectAnimator.ofFloat(v, View.ALPHA, v.alpha, 0f)
-            anim.duration = 400
-            anim.start()
-        }
+        val anim = ObjectAnimator.ofFloat(v, View.ALPHA, v.alpha, 0f)
+        anim.duration = 400
+        anim.start()
     }
 }

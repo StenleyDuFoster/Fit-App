@@ -21,8 +21,8 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
         text_2.text = saveContent?.get(3)
         text_3.text = ("loading...")
 
-        IsLoadImageEventBus.getObservable().subscribe{
-            if(!(it as Boolean)) {
+        IsLoadImageEventBus.getObservable().subscribe {
+            if (!(it as Boolean)) {
                 image.visibility = View.GONE
             }
         }
@@ -40,7 +40,7 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
         viewModel = ViewModelProvider(this).get(DetailsViewModel::class.java)
 
         (viewModel as DetailsViewModel).getItem().observe(viewLifecycleOwner, { item ->
-            if(item != null)
+            if (item != null)
                 text_3.text = item.result.description
         })
 

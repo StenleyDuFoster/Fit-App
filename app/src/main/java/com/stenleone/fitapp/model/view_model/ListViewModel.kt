@@ -20,12 +20,11 @@ class ListViewModel : BaseViewModel() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
-                {error ->
+                { error ->
                     liveError.postValue(error.message)
                 },
-                {
-                    response ->
-                    if(response.isSuccessful) {
+                { response ->
+                    if (response.isSuccessful) {
                         liveListItem.postValue(response.body()?.result)
                     } else {
                         liveError.postValue("error code: " + response.code().toString())

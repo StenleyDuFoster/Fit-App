@@ -2,7 +2,7 @@ package com.stenleone.fitapp.model.data
 
 import com.google.gson.annotations.SerializedName
 
-data class LogInUserFitPlan (
+data class LogInUserFitPlan(
 
     @SerializedName("access_token")
     val accessToken: String,

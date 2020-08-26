@@ -17,7 +17,7 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         settingsButton.clicks()
             .throttleFirst(1, TimeUnit.SECONDS)
             .subscribe {
-                if(navController.currentDestination!!.id != R.id.settingsFragment) {
+                if (navController.currentDestination!!.id != R.id.settingsFragment) {
                     navController.navigate(R.id.to_settingsFragment)
                 }
             }

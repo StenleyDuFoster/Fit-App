@@ -29,11 +29,11 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             .throttleFirst(1, TimeUnit.SECONDS)
             .subscribe {
                 authWithModel()
+                (activity!! as BaseActivity).networkChangeReceiver.setRunnableCode({
+                    authWithModel()
+                })
             }
         activity!!.loadStatus.text = getString(R.string.auth_message)
-        (activity!! as BaseActivity).networkChangeReceiver.setRunnableCode({
-            authWithModel()
-        })
     }
 
     private fun authWithModel() {
@@ -62,13 +62,13 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         })
     }
 
-    private fun setViewWaitMode(bool : Boolean) {
+    private fun setViewWaitMode(bool: Boolean) {
 
         textInputEmailEditText.isClickable = bool
         textInputPasswordEditText.isClickable = bool
         loginButton.isClickable = bool
 
-        if(bool) {
+        if (bool) {
             CustomAnimate.alphaFadeOut(activity!!.loadLay)
         } else {
             CustomAnimate.alphaFadeIn(activity!!.loadLay)

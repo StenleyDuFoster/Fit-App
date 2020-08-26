@@ -17,11 +17,11 @@ class BasicHeaderInterceptor : Interceptor {
             .newBuilder()
             .addHeader("Content-Type", "application/json")
 
-            if (accessToken == null) {
-                chain.request()
-            } else {
-                builder.addHeader("Authorization", "Bearer ${accessToken}")
-            }
+        if (accessToken == null) {
+            chain.request()
+        } else {
+            builder.addHeader("Authorization", "Bearer ${accessToken}")
+        }
 
         return chain.proceed(builder.build())
     }

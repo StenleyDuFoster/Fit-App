@@ -3,6 +3,7 @@ package com.stenleone.fitapp.model.data.details
 import android.provider.MediaStore
 
 data class ItemDetailsFitPlan(
+
     val allowFreeAccess: Boolean,
     val athleteFirstName: String,
     val athleteId: Int,

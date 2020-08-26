@@ -7,11 +7,12 @@ import com.stenleone.fitapp.util.shared_preferences.SharedPreferencesManager
 import com.stenleone.fitapp.view.fragment.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_settings.*
 
-class SettingsFragment : BaseFragment(R.layout.fragment_settings), CompoundButton.OnCheckedChangeListener {
+class SettingsFragment : BaseFragment(R.layout.fragment_settings),
+    CompoundButton.OnCheckedChangeListener {
 
     private val sharedPreferences = SharedPreferencesManager
 
-    override fun initModel() { }
+    override fun initModel() {}
 
     override fun initAfterViewCreated() {
         activity!!.actionBar!!.setDisplayHomeAsUpEnabled(true)

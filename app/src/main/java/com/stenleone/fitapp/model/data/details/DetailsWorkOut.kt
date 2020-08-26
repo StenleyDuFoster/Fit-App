@@ -1,6 +1,6 @@
 package com.stenleone.fitapp.model.data.details
 
-data class DetailsWorkOut (
+data class DetailsWorkOut(
 
     val completed: Boolean,
     val defaultRestPeriod: Int,

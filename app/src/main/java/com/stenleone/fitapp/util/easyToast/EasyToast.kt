@@ -8,6 +8,7 @@ fun makeToast(message: String) {
         .makeText(
             App.contextComponent,
             message,
-            Toast.LENGTH_SHORT)
+            Toast.LENGTH_SHORT
+        )
         .show()
 }
